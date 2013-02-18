@@ -26,5 +26,7 @@
                     action="com.peergreen.shelbie.deployment.internal.UndeployDeploymentAction" />
   <command-instance xmlns="org.ow2.shelbie"
                     action="com.peergreen.shelbie.deployment.internal.UpdateDeploymentAction" />
+  <command-instance xmlns="org.ow2.shelbie"
+                    action="com.peergreen.shelbie.deployment.internal.ListManagedArtifactsAction" />
 
 </ipojo>
