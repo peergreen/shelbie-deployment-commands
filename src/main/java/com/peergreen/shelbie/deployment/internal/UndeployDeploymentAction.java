@@ -17,6 +17,7 @@
 package com.peergreen.shelbie.deployment.internal;
 
 import java.net.URI;
+import java.util.Arrays;
 
 import org.apache.felix.gogo.commands.Action;
 import org.apache.felix.gogo.commands.Argument;
@@ -29,6 +30,7 @@ import org.fusesource.jansi.Ansi;
 
 import com.peergreen.deployment.Artifact;
 import com.peergreen.deployment.ArtifactBuilder;
+import com.peergreen.deployment.ArtifactProcessRequest;
 import com.peergreen.deployment.DeploymentMode;
 import com.peergreen.deployment.DeploymentService;
 import com.peergreen.deployment.report.DeploymentStatusReport;
@@ -37,7 +39,7 @@ import com.peergreen.deployment.report.DeploymentStatusReport;
  * Display the report of an artifact.
  */
 @Component
-@Command(name = "undeploy",
+@Command(name = "undeploy-artifact",
          scope = "deployment",
          description = "Undeploy the given artifact in the system.")
 @HandlerDeclaration("<sh:command xmlns:sh='org.ow2.shelbie'/>")
@@ -60,8 +62,11 @@ public class UndeployDeploymentAction implements Action {
         Ansi buffer = Ansi.ansi();
 
         Artifact artifact = artifactBuilder.build(uri.toString(), new URI(uri));
+        ArtifactProcessRequest artifactProcessRequest = new ArtifactProcessRequest();
+        artifactProcessRequest.setArtifact(artifact);
+        artifactProcessRequest.setDeploymentMode(DeploymentMode.UNDEPLOY);
+        DeploymentStatusReport report = deploymentService.process(Arrays.asList(artifactProcessRequest));
 
-        DeploymentStatusReport report = deploymentService.process(artifact, DeploymentMode.UNDEPLOY);
         buffer.a(report);
         System.out.println(buffer.toString());
         return null;

@@ -31,7 +31,7 @@ import com.peergreen.deployment.DeploymentService;
  * Display the report of an artifact.
  */
 @Component
-@Command(name = "report",
+@Command(name = "report-artifact",
          scope = "deployment",
          description = "Display report of an artifact deployed in the system.")
 @HandlerDeclaration("<sh:command xmlns:sh='org.ow2.shelbie'/>")
