@@ -62,8 +62,7 @@ public class UndeployDeploymentAction implements Action {
         Ansi buffer = Ansi.ansi();
 
         Artifact artifact = artifactBuilder.build(uri.toString(), new URI(uri));
-        ArtifactProcessRequest artifactProcessRequest = new ArtifactProcessRequest();
-        artifactProcessRequest.setArtifact(artifact);
+        ArtifactProcessRequest artifactProcessRequest = new ArtifactProcessRequest(artifact);
         artifactProcessRequest.setDeploymentMode(DeploymentMode.UNDEPLOY);
         DeploymentStatusReport report = deploymentService.process(Arrays.asList(artifactProcessRequest));
 

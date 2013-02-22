@@ -70,8 +70,7 @@ public class DeployDeploymentAction implements Action {
         Ansi buffer = Ansi.ansi();
 
         Artifact artifact = artifactBuilder.build(uri.toString(), new URI(uri));
-        ArtifactProcessRequest artifactProcessRequest = new ArtifactProcessRequest();
-        artifactProcessRequest.setArtifact(artifact);
+        ArtifactProcessRequest artifactProcessRequest = new ArtifactProcessRequest(artifact);
         artifactProcessRequest.setPersistent(isPersistent);
         artifactProcessRequest.setDeploymentMode(DeploymentMode.DEPLOY);
 
