@@ -66,7 +66,7 @@ public class UpdateDeploymentAction implements Action {
         artifactProcessRequest.setDeploymentMode(DeploymentMode.UPDATE);
         DeploymentStatusReport report = deploymentService.process(Arrays.asList(artifactProcessRequest));
 
-        buffer.a(report);
+        buffer.a(report.shortReport());
         System.out.println(buffer.toString());
         return null;
     }
